@@ -12,12 +12,8 @@ RUN dnf install -y \
         mcpelauncher-ui-manifest \
         msa-manifest \
     && dnf clean all \
-    && rm -rf /var/cache/yum
+    && rm -rf /var/cache/yum \
+    && git config -f /etc/rdesktop/rdesktop.ini rdesktop.title "Personal Minecraft" \
+    && git config -f /etc/rdesktop/rdesktop.ini rdesktop.exec "mcpelauncher-ui-qt"
 
-USER gbraad
-
-RUN echo "exec mcpelauncher-ui-qt" >> $HOME/.config/i3/config
-
-USER root
-# ensure to become root for systemd
 #ENTRYPOINT ["/sbin/init"]
